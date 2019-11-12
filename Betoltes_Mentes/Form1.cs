@@ -29,7 +29,7 @@ namespace Betoltes_Mentes
 
         private void Csak_betuket_enged(object sender, EventArgs e)
         {
-            textBox_nev.Text = string.Concat(textBox_nev.Text.Where(char.IsLetter));
+            textBox_nev.Text = string.Concat(textBox_nev.Text.Where(c => char.IsLetter(c) || char.IsWhiteSpace(c)));
             textBox_nev.SelectionStart = textBox_nev.Text.Length + 1;
         }
 
