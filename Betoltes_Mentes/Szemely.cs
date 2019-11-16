@@ -10,17 +10,25 @@ namespace Betoltes_Mentes
     {
         string nev;
         bool nem;
+        bool feliratkozik;
         DateTime szulido;
         string[] hobbik;
-        bool feliratkozik;
 
 
-        public bool Feliratkozik { get => feliratkozik; set => feliratkozik = value; }
-        public string Nev { get => nev; set => nev = value; }
-        public bool Nem { get => nem; set => nem = value; }
-        public DateTime Szulido { get => szulido; set => szulido = value; }
-        public string[] Hobbik { get => hobbik; set => hobbik = value; }
+        public bool Feliratkozik { get => feliratkozik;  }
+        public string Nev { get => nev; }
+        public bool Nem { get => nem; }
+        public DateTime Szulido { get => szulido;  }
+        public string[] Hobbik { get => hobbik;  }
 
+        /// <summary>
+        ///     Az űrlap adatmezői alapján lehet létrehozni
+        /// </summary>
+        /// <param name="nev"></param>
+        /// <param name="nem"></param>
+        /// <param name="szulido"></param>
+        /// <param name="feliratkozik"></param>
+        /// <param name="hobbik"></param>
         public Szemely(string nev, bool nem, DateTime szulido, bool feliratkozik, string[] hobbik)
         {
             this.nev = nev;
@@ -34,6 +42,11 @@ namespace Betoltes_Mentes
         {
         }
 
+        /// <summary>
+        ///     Struktúrált szövegfájlba íráshoz szükséges
+        ///     XML-ról bővebben: http://www.w3c.hu/forditasok/XML_10_pontban.html
+        /// </summary>
+        /// <returns></returns>
         public string toXML()
         {
             string toXML = "";
@@ -44,11 +57,20 @@ namespace Betoltes_Mentes
         {
 
         }
+        /// <summary>
+        ///     A szövegfájlba íráshoz szükséges metódus
+        /// </summary>
+        /// <returns></returns>
         public string toTXT()
         {
             string toTXT = string.Join(";", nev, szulido.ToString("yyyy-MM-dd"), nem.ToString(), feliratkozik.ToString(), string.Join(";",hobbik));
             return toTXT;
         }
+        /// <summary>
+        ///     Szövegfájlból visszatöltéshez szükséges
+        /// </summary>
+        /// <param name="sor">A visszaolvasott sor</param>
+        /// <returns></returns>
         public bool fromTXT(string sor)
         {
             bool sikeres = true;
